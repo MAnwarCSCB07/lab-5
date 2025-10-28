@@ -3,6 +3,10 @@ package usecase;
 import api.GradeDataBase;
 import entity.Grade;
 import entity.Team;
+import org.json.JSONException;
+
+import java.util.Objects;
+
 
 /**
  * GetAverageGradeUseCase class.
