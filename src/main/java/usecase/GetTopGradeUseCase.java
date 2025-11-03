@@ -21,16 +21,19 @@ public final class GetTopGradeUseCase {
      */
     public float getTopGrade(String course) {
         // Call the API to get the usernames of all your team members
-        float max = 0;
+        float max = 0; // Assume 0 is the minimum possible grade
         final Team team = gradeDataBase.getMyTeam();
-        // Call the API to get all the grades for the course for all your team members
-        for (String username : team.getMembers()) {
-            // Call the API to get the grade for the course for the username
-            final Grade[] grades = gradeDataBase.getGrades(username);
-            for (Grade grade : grades) {
 
+        // Iterate through all team members
+        for (String username : team.getMembers()) {
+            // Call the API to get all grades for the current team member
+            final Grade[] grades = gradeDataBase.getGrades(username);
+
+            // Check each grade for this member
+            for (Grade grade : grades) {
+                // If the grade is for the target course, check if it's the new maximum
                 if (grade.getCourse().equals(course)) {
-                    // Sum all the grades
+                    // Find the maximum grade
                     if (grade.getGrade() > max) {
                         max = grade.getGrade();
                     }
